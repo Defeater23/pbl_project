@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmoStar - Your AI Emotional Journey Companion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 col-md-4 sidebar">
+                <div class="sidebar-content">
+                    <h2 class="app-title">
+                        <i class= "fa-solid fa-star text-primary"></i>
+                        EmoStar
+                    </h2>
+                    
+                    <!-- Avatar Section -->
+                    <div class="avatar-section">
+                        <h5>Your Emotional Avatar</h5>
+                        <div class="avatar-container">
+                            <div id="avatar" class="avatar neutral">
+                                <div class="avatar-face">
+                                    <div class="eyes">
+                                        <div class="eye left"></div>
+                                        <div class="eye right"></div>
+                                    </div>
+                                    <div class="mouth"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p id="avatar-status" class="avatar-status">Neutral Mood</p>
+                    </div>
+
+                    <!-- Emotion Summary -->
+                    <div class="emotion-summary">
+                        <h5>Today's Emotions</h5>
+                        <div id="emotion-tags" class="emotion-tags"></div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="quick-stats">
+                        <h5>Your Progress</h5>
+                        <div class="stat-item">
+                            <i class="fas fa-calendar-day"></i>
+                            <span>Entries Today: <span id="entries-today">0</span></span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-fire"></i>
+                            <span>Streak: <span id="streak-count">0</span> days</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Overall Mood: <span id="overall-mood">Neutral</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9 col-md-8 main-content">
+                <div class="main-content-inner">
+                    <!-- Header -->
+                    <div class="header-section">
+                        <h1>How are you feeling today?</h1>
+                        <p class="subtitle">Express yourself freely, and let AI help you understand your emotional patterns</p>
+                    </div>
+
+                    <!-- Journal Entry Section -->
+                    <div class="journal-section">
+                        <div class="card journal-card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="journal-text" class="form-label">
+                                        <i class="fas fa-pen-fancy"></i> Write your thoughts...
+                                    </label>
+                                    <textarea 
+                                        class="form-control journal-textarea" 
+                                        id="journal-text" 
+                                        rows="8" 
+                                        placeholder="Dear journal, today I feel...&#10;&#10;What happened today that made you feel this way? What thoughts are going through your mind? Take your time and let it all out."
+                                    ></textarea>
+                                </div>
+                                <div class="journal-actions">
+                                    <button type="button" class="btn btn-primary" id="analyze-btn">
+                                        <i class="fas fa-brain"></i> Analyze My Emotions
+                                    </button>
+                                    <button type="button" class="btn btn-success" id="save-entry-btn">
+                                        <i class="fas fa-save"></i> Save Entry
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" id="clear-btn">
+                                        <i class="fas fa-eraser"></i> Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analysis Results -->
+                    <div id="analysis-section" class="analysis-section" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card analysis-card">
+                                    <div class="card-header">
+                                        <h5><i class="fas fa-chart-pie"></i> Emotional Analysis</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="emotion-breakdown"></div>
+                                        <canvas id="emotion-chart" width="300" height="200"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card analysis-card">
+                                    <div class="card-header">
+                                        <h5><i class="fas fa-lightbulb"></i> Insights</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="insights-content">
+                                            <div id="triggers-section">
+                                                <h6><i class="fas fa-exclamation-triangle text-warning"></i> Triggers Detected</h6>
+                                                <div id="triggers-list"></div>
+                                            </div>
+                                            <div id="glimmers-section" class="mt-3">
+                                                <h6><i class="fas fa-star text-success"></i> Glimmers Found</h6>
+                                                <div id="glimmers-list"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Journal History -->
+                    <div class="history-section">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5><i class="fas fa-history"></i> Recent Entries</h5>
+                                <button class="btn btn-sm btn-outline-primary" id="show-all-entries">
+                                    View All
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div id="journal-history" class="journal-history">
+                                    <p class="text-muted">No entries yet. Start writing to see your emotional journey!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast" class="toast" role="alert">
+            <div class="toast-header">
+                <i class="fas fa-info-circle text-primary me-2"></i>
+                <strong class="me-auto">EmotionJournal</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body" id="toast-body">
+                <!-- Toast message will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

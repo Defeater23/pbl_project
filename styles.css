@@ -1,0 +1,744 @@
+/* EmotionJournal - Modern Styles with Avatar System */
+
+/* Global Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    min-height: 100vh;
+    padding: 0;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: 100vh;
+    padding: 0;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-content {
+    padding: 2rem 1.5rem;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.app-title {
+    color: #6366f1;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.app-title i {
+    margin-right: 0.5rem;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 50%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+}
+
+/* Avatar System Styles */
+.avatar-section {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.avatar-section h5 {
+    color: #4f46e5;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border: 3px solid #e5e7eb;
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-face {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+}
+
+.eyes {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+    margin-top: 20%;
+}
+
+.eye {
+    width: 15px;
+    height: 15px;
+    background: #374151;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.mouth {
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 15px;
+    border: 3px solid #374151;
+    border-top: none;
+    border-radius: 0 0 30px 30px;
+    transition: all 0.3s ease;
+}
+
+/* Emotion-specific Avatar Styles */
+.avatar.joy {
+    background: linear-gradient(145deg, #fef3c7, #fbbf24);
+    border-color: #f59e0b;
+    animation: joyBounce 1s ease-in-out;
+}
+
+.avatar.joy .eye {
+    background: #374151;
+    transform: scaleY(0.5); /* Squinting happy eyes */
+}
+
+.avatar.joy .mouth {
+    border-color: #374151;
+    width: 40px;
+    height: 20px;
+    border-radius: 0 0 40px 40px;
+}
+
+.avatar.sadness {
+    background: linear-gradient(145deg, #dbeafe, #60a5fa);
+    border-color: #3b82f6;
+}
+
+.avatar.sadness .eye {
+    background: #374151;
+    position: relative;
+}
+
+.avatar.sadness .eye::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 15px;
+    background: #60a5fa;
+    border-radius: 2px;
+}
+
+.avatar.sadness .mouth {
+    border-color: #374151;
+    width: 25px;
+    height: 12px;
+    border-radius: 25px 25px 0 0;
+    border-bottom: none;
+    border-top: 3px solid #374151;
+    transform: translateX(-50%) rotate(180deg);
+}
+
+.avatar.anger {
+    background: linear-gradient(145deg, #fecaca, #ef4444);
+    border-color: #dc2626;
+    animation: angerShake 0.5s ease-in-out;
+}
+
+.avatar.anger .eye {
+    background: #374151;
+    transform: skewY(-10deg);
+}
+
+.avatar.anger .mouth {
+    border-color: #374151;
+    width: 20px;
+    height: 10px;
+    border-radius: 0;
+    border: 3px solid #374151;
+}
+
+.avatar.fear {
+    background: linear-gradient(145deg, #f3f4f6, #9ca3af);
+    border-color: #6b7280;
+    animation: fearTremor 2s ease-in-out infinite;
+}
+
+.avatar.fear .eye {
+    background: #374151;
+    width: 18px;
+    height: 18px; /* Wider eyes */
+}
+
+.avatar.fear .mouth {
+    border-color: #374151;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 3px solid #374151;
+}
+
+.avatar.love {
+    background: linear-gradient(145deg, #fce7f3, #ec4899);
+    border-color: #db2777;
+    animation: loveFloat 2s ease-in-out infinite;
+}
+
+.avatar.love .eye {
+    background: #374151;
+    transform: rotate(45deg);
+    border-radius: 0;
+    width: 12px;
+    height: 12px;
+}
+
+.avatar.love .mouth {
+    border-color: #374151;
+    width: 35px;
+    height: 18px;
+    border-radius: 0 0 35px 35px;
+}
+
+.avatar.hope {
+    background: linear-gradient(145deg, #ecfdf5, #10b981);
+    border-color: #059669;
+    animation: hopeGlow 3s ease-in-out infinite;
+}
+
+.avatar.hope .eye {
+    background: #374151;
+    transform: scaleY(0.7);
+}
+
+.avatar.hope .mouth {
+    border-color: #374151;
+    width: 35px;
+    height: 18px;
+    border-radius: 0 0 35px 35px;
+}
+
+.avatar.gratitude {
+    background: linear-gradient(145deg, #f0fdf4, #22c55e);
+    border-color: #16a34a;
+    animation: gratitudePulse 2.5s ease-in-out infinite;
+}
+
+.avatar.gratitude .eye {
+    background: #374151;
+    transform: scaleY(0.6);
+}
+
+.avatar.gratitude .mouth {
+    border-color: #374151;
+    width: 30px;
+    height: 15px;
+    border-radius: 0 0 30px 30px;
+}
+
+.avatar.surprise {
+    background: linear-gradient(145deg, #ede9fe, #8b5cf6);
+    border-color: #7c3aed;
+    animation: surpriseJump 0.8s ease-out;
+}
+
+.avatar.surprise .eye {
+    background: #374151;
+    width: 20px;
+    height: 20px;
+}
+
+.avatar.surprise .mouth {
+    border-color: #374151;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid #374151;
+}
+
+/* Avatar Animations */
+@keyframes joyBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes angerShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+}
+
+@keyframes fearTremor {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.98); }
+}
+
+@keyframes loveFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes hopeGlow {
+    0%, 100% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
+    50% { box-shadow: 0 8px 35px rgba(16, 185, 129, 0.4); }
+}
+
+@keyframes gratitudePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes surpriseJump {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes avatarPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.avatar-status {
+    color: #4f46e5;
+    font-weight: 500;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Emotion Summary */
+.emotion-summary {
+    margin-bottom: 2rem;
+}
+
+.emotion-summary h5 {
+    color: #4f46e5;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.emotion-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.emotion-tag {
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.emotion-tag.joy { background: #f59e0b; }
+.emotion-tag.sadness { background: #3b82f6; }
+.emotion-tag.anger { background: #dc2626; }
+.emotion-tag.fear { background: #6b7280; }
+.emotion-tag.love { background: #db2777; }
+.emotion-tag.hope { background: #059669; }
+.emotion-tag.gratitude { background: #16a34a; }
+.emotion-tag.surprise { background: #7c3aed; }
+
+/* Quick Stats */
+.quick-stats h5 {
+    color: #4f46e5;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    font-size: 0.85rem;
+}
+
+.stat-item i {
+    margin-right: 0.5rem;
+    color: #6366f1;
+    width: 16px;
+}
+
+/* Main Content */
+.main-content {
+    padding: 0;
+    min-height: 100vh;
+}
+
+.main-content-inner {
+    padding: 2rem;
+    max-width: 100%;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: white;
+}
+
+.header-section h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+/* Journal Section */
+.journal-section {
+    margin-bottom: 3rem;
+}
+
+.journal-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.journal-card .card-body {
+    padding: 2rem;
+}
+
+.form-label {
+    color: #4f46e5;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.journal-textarea {
+    border: 2px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+    resize: vertical;
+    min-height: 200px;
+}
+
+.journal-textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.journal-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.journal-actions .btn {
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.journal-actions .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Analysis Section */
+.analysis-section {
+    margin-bottom: 3rem;
+}
+
+.analysis-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.analysis-card .card-header {
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px 20px 0 0 !important;
+    padding: 1.5rem;
+}
+
+.analysis-card .card-header h5 {
+    color: #4f46e5;
+    margin: 0;
+    font-weight: 600;
+}
+
+.analysis-card .card-body {
+    padding: 2rem;
+}
+
+/* Emotion Analysis */
+.emotion-item {
+    margin-bottom: 1rem;
+}
+
+.emotion-name {
+    font-weight: 500;
+    color: #374151;
+}
+
+.emotion-score {
+    font-weight: 600;
+    color: #6366f1;
+}
+
+/* Insights */
+.alert-sm {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 0.9rem;
+}
+
+/* History Section */
+.history-section {
+    margin-bottom: 2rem;
+}
+
+.history-section .card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.history-section .card-header {
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px 20px 0 0 !important;
+    padding: 1.5rem;
+}
+
+.history-section .card-header h5 {
+    color: #4f46e5;
+    margin: 0;
+    font-weight: 600;
+}
+
+.journal-history {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.journal-entry-item {
+    padding: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.journal-entry-item:hover {
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 10px;
+    margin: 0.5rem;
+    border-bottom: none;
+}
+
+.journal-entry-item:last-child {
+    border-bottom: none;
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.entry-preview {
+    color: #6b7280;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.emotion-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    margin-left: 0.25rem;
+}
+
+.emotion-badge.joy { background: #f59e0b; }
+.emotion-badge.sadness { background: #3b82f6; }
+.emotion-badge.anger { background: #dc2626; }
+.emotion-badge.fear { background: #6b7280; }
+.emotion-badge.love { background: #db2777; }
+.emotion-badge.hope { background: #059669; }
+.emotion-badge.gratitude { background: #16a34a; }
+.emotion-badge.surprise { background: #7c3aed; }
+
+/* Toast Notifications */
+.toast {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        min-height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .main-content-inner {
+        padding: 1rem;
+    }
+    
+    .header-section h1 {
+        font-size: 2rem;
+    }
+    
+    .journal-actions {
+        flex-direction: column;
+    }
+    
+    .journal-actions .btn {
+        width: 100%;
+    }
+    
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .sidebar-content {
+        padding: 1rem;
+        height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-section h1 {
+        font-size: 1.75rem;
+    }
+    
+    .avatar {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .emotion-tags {
+        justify-content: center;
+    }
+}
+
+/* Loading States */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Smooth Transitions */
+* {
+    transition: all 0.2s ease;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.5);
+}
+
+/* Focus Indicators */
+.btn:focus,
+.form-control:focus {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+/* Animation for smooth entries */
+.journal-entry-item {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Chart container styling */
+#emotion-chart {
+    max-height: 300px !important;
+}
