@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EmoStar: An Emotion Analysis Journal | PBL 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); }
+        .gradient-text { background: linear-gradient(90deg,#60a5fa,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    </style>
+</head>
+<body>
+
+<nav class="fixed w-full glass px-8 py-4 flex justify-between items-center">
+    <div>
+        <span class="text-xl font-black uppercase">PBL <span class="text-blue-500 italic">2026</span></span>
+        <p class="text-xs text-slate-400 uppercase tracking-widest">Dept. of CSE • MUJ</p>
+    </div>
+</nav>
+
+<main class="max-w-6xl mx-auto px-6 pt-40 pb-32 space-y-32">
+
+<!-- TITLE -->
+<section class="text-center">
+    <h1 class="text-6xl font-extrabold uppercase">
+        <span class="gradient-text">EmoStar</span>
+    </h1>
+    <p class="text-slate-400 mt-6 italic text-lg">
+        "Tracking is common. Insight is rare. EmoStar transforms emotional logs into meaningful AI-driven insights."
+    </p>
+</section>
+
+<!-- PROBLEM STATEMENT -->
+<section class="glass p-10 rounded-3xl border-l-4 border-blue-500">
+    <h2 class="text-3xl font-bold mb-6 text-blue-400">Problem Statement</h2>
+    <p class="text-slate-400 leading-relaxed">
+        While digital journaling and mood tracking applications are widely available, most platforms only store emotional entries without generating meaningful insights. Users lack AI-driven pattern recognition, trigger detection, and structured emotional growth tracking.
+    </p>
+</section>
+
+<!-- LITERATURE REVIEW -->
+<section class="glass p-10 rounded-3xl border-l-4 border-purple-500">
+    <h2 class="text-3xl font-bold mb-6 text-purple-400">Literature Review</h2>
+    <p class="text-slate-400">
+        Existing apps such as Daylio, Reflectly, Journey, and Moodnotes provide mood logging and journaling features. However, they primarily focus on recording emotions rather than analyzing long-term emotional patterns, multimodal inputs, or AI-driven storytelling.
+    </p>
+</section>
+
+<!-- RESEARCH GAP -->
+<section class="glass p-10 rounded-3xl border-l-4 border-pink-500">
+    <h2 class="text-3xl font-bold mb-6 text-pink-400">Research Gap / Innovation</h2>
+    <p class="text-slate-400">
+        There is no integrated platform that combines multimodal journaling, NLP-based emotion detection, trend visualization, and personalized emotional storytelling into one unified system.
+    </p>
+</section>
+
+<!-- DATASET -->
+<section class="glass p-10 rounded-3xl border-l-4 border-blue-400">
+    <h2 class="text-3xl font-bold mb-6 text-blue-400">Dataset / Input</h2>
+    <p class="text-slate-400">
+        In EmoStar, the primary input consists of user-generated emotional entries which can be:
+    </p>
+    <ul class="list-disc pl-8 mt-4 space-y-2 text-slate-300">
+        <li>Text-based emotional logs (journaling sentences)</li>
+        <li>Multimodal inputs: optional photos or keyword tags</li>
+        <li>Time-stamped entries to track emotion over sessions</li>
+    </ul>
+    <p class="text-slate-400 mt-6">
+        These inputs serve as raw emotional data which the system processes using NLP techniques for sentiment and emotion detection.
+    </p>
+    <p class="text-slate-400 mt-4">
+        Before analysis, text inputs are cleaned, tokenized, and vectorized to support accurate emotion classification and pattern extraction.
+    </p>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="glass p-10 rounded-3xl border-l-4 border-yellow-500">
+    <h2 class="text-3xl font-bold mb-6 text-yellow-400">System Methodology</h2>
+    <p class="text-slate-400">
+        The system pipeline consists of text preprocessing, emotion detection using NLP techniques, time-based trend analysis, and visualization of emotional insights. The output includes structured summaries and graphical representations of emotional evolution.
+    </p>
+</section>
+
+<!-- LIVE EXECUTION -->
+<section class="glass p-10 rounded-3xl border-l-4 border-green-500">
+    <h2 class="text-3xl font-bold mb-6 text-green-400">Live Execution / Demo</h2>
+    <p class="text-slate-400">
+        EmoStar is implemented as a working prototype available on GitHub. Users can input emotional logs and observe AI-generated emotional insights and trend visualizations.
+    </p>
+    <ul class="list-disc pl-8 mt-4 text-slate-300 space-y-2">
+        <li>Emotion detection from text</li>
+        <li>Pattern recognition across entries</li>
+        <li>Visual emotional trend graphs</li>
+        <li>AI-generated emotional summaries</li>
+    </ul>
+    <div class="mt-8 text-center">
+        <a href="https://github.com/Defeater23/pbl_project"
+           target="_blank"
+           class="px-8 py-3 bg-green-600 hover:bg-green-500 rounded-full font-bold text-sm transition">
+            View Code on GitHub
+        </a>
+    </div>
+</section>
+
+<!-- RESULTS -->
+<section class="glass p-10 rounded-3xl border-l-4 border-blue-500">
+    <h2 class="text-3xl font-bold mb-8 text-blue-400">Results & Analysis</h2>
+    <canvas id="resultsChart"></canvas>
+</section>
+
+<!-- TEAM -->
+<section class="glass p-10 rounded-3xl border-l-4 border-gray-500 text-center">
+    <h2 class="text-3xl font-bold mb-10 text-gray-400">Team</h2>
+
+    <div class="space-y-6">
+
+        <div>
+            <p class="text-slate-300 font-semibold text-lg">Ameya Maheshwari</p>
+            <p class="text-slate-500 text-sm">Reg No: 2427030174</p>
+        </div>
+
+        <div>
+            <p class="text-slate-300 font-semibold text-lg">Krrish Gupta</p>
+            <p class="text-slate-500 text-sm">Reg No: 2427030214</p>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="py-12 text-center bg-black/40">
+    <p class="text-slate-600 text-xs uppercase tracking-widest">
+        Manipal University Jaipur • Department of Computer Science & Engineering • 2026
+    </p>
+</footer>
+
+<script>
+const ctx = document.getElementById('resultsChart').getContext('2d');
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Existing Systems', 'EmoStar'],
+        datasets: [{
+            data: [70, 92],
+            backgroundColor: ['#1e293b','#3b82f6'],
+            borderRadius: 10
+        }]
+    },
+    options: {
+        plugins: { legend: { display:false }},
+        scales: { y: { beginAtZero:true }}
+    }
+});
+</script>
+
+</body>
+</html>
