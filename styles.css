@@ -159,16 +159,38 @@ body {
     position: relative;
 }
 
+.avatar.sadness .eye {
+    background: #374151;
+    position: relative;
+    transform: scaleY(0.6); /* droopy eyes */
+}
+
 .avatar.sadness .eye::after {
     content: '';
     position: absolute;
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    width: 2px;
+    
+    width: 3px;
     height: 15px;
     background: #60a5fa;
     border-radius: 2px;
+
+    opacity: 0.8;
+
+    animation: tearDrop 1.2s infinite ease-in;
+}
+
+@keyframes tearDrop {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(-50%) translateY(10px);
+        opacity: 0;
+    }
 }
 
 .avatar.sadness .mouth {
@@ -178,7 +200,7 @@ body {
     border-radius: 25px 25px 0 0;
     border-bottom: none;
     border-top: 3px solid #374151;
-    transform: translateX(-50%) rotate(180deg);
+    transform: translateX(-50%);
 }
 
 .avatar.anger {
@@ -219,6 +241,7 @@ body {
     border-radius: 50%;
     border: 3px solid #374151;
 }
+
 
 .avatar.love {
     background: linear-gradient(145deg, #fce7f3, #ec4899);
@@ -310,8 +333,11 @@ body {
 }
 
 @keyframes fearTremor {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(0.98); }
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-2px); }
+    50%  { transform: translateX(2px); }
+    75%  { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
 }
 
 @keyframes loveFloat {
