@@ -11,6 +11,20 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
+    transition: background 1s ease-in-out;
+}
+
+/* Theme Classes for Overall Mood */
+body.theme-positive {
+    background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); /* Green to Blue */
+}
+
+body.theme-negative {
+    background: linear-gradient(135deg, #374151 0%, #111827 100%); /* Dark Gray tones */
+}
+
+body.theme-neutral {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Original Purple/Blue */
 }
 
 .container-fluid {
@@ -152,45 +166,25 @@ body {
 .avatar.sadness {
     background: linear-gradient(145deg, #dbeafe, #60a5fa);
     border-color: #3b82f6;
+    animation: sadnessShiver 3s infinite ease-in-out;
 }
 
 .avatar.sadness .eye {
     background: #374151;
     position: relative;
-}
-
-.avatar.sadness .eye {
-    background: #374151;
-    position: relative;
-    transform: scaleY(0.6); /* droopy eyes */
 }
 
 .avatar.sadness .eye::after {
     content: '';
     position: absolute;
-    top: 100%;
+    top: 70%;
     left: 50%;
-    transform: translateX(-50%);
-    
-    width: 3px;
-    height: 15px;
-    background: #60a5fa;
-    border-radius: 2px;
-
-    opacity: 0.8;
-
-    animation: tearDrop 1.2s infinite ease-in;
-}
-
-@keyframes tearDrop {
-    0% {
-        transform: translateX(-50%) translateY(0);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateX(-50%) translateY(10px);
-        opacity: 0;
-    }
+    width: 6px;
+    height: 6px;
+    background: #bfdbfe;
+    border-radius: 50% 0 50% 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    animation: cryingTears 1.5s infinite ease-in;
 }
 
 .avatar.sadness .mouth {
@@ -241,7 +235,6 @@ body {
     border-radius: 50%;
     border: 3px solid #374151;
 }
-
 
 .avatar.love {
     background: linear-gradient(145deg, #fce7f3, #ec4899);
@@ -326,6 +319,35 @@ body {
     50% { transform: translateY(-10px); }
 }
 
+@keyframes sadnessShiver {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(2px) rotate(-1deg); }
+    75% { transform: translateY(1px) rotate(1deg); }
+}
+
+@keyframes cryingTears {
+    0% {
+        top: 70%;
+        opacity: 0;
+        transform: translateX(-50%) rotate(-45deg) scale(0.5);
+    }
+    20% {
+        top: 100%;
+        opacity: 1;
+        transform: translateX(-50%) rotate(-45deg) scale(1);
+    }
+    80% {
+        top: 300%;
+        opacity: 1;
+        transform: translateX(-50%) rotate(-45deg) scale(0.8);
+    }
+    100% {
+        top: 350%;
+        opacity: 0;
+        transform: translateX(-50%) rotate(-45deg) scale(0.5);
+    }
+}
+
 @keyframes angerShake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-3px); }
@@ -333,11 +355,8 @@ body {
 }
 
 @keyframes fearTremor {
-    0%   { transform: translateX(0); }
-    25%  { transform: translateX(-2px); }
-    50%  { transform: translateX(2px); }
-    75%  { transform: translateX(-2px); }
-    100% { transform: translateX(0); }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.98); }
 }
 
 @keyframes loveFloat {
